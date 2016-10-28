@@ -6,12 +6,28 @@ export default class Ball {
     this.x = x
     this.y = (boardHeight / 2) - (this.height / 2);
     this.vy = Math.floor(Math.random() * 12 - 6); // y direction
-    this.vx = (6 - Math.abs(this.vy)); // x direction
+    this.vx = (5 - Math.abs(this.vy)); // x direction
     this.radius = 5
     this.color = color
     this.boardHeight = boardHeight;
 
    }
+    reset(){
+     this.x =150;
+     this.y = 75;
+     this.vx *= -1;
+ }
+
+ score(p1Score, p2Score){
+ if (this.x <= 0 + this.radius){
+     this.reset();
+     p1Score.score++;}
+     else if (this.x  >= 295){
+         this.reset();
+         p2Score.score++;
+     }
+ }
+
 bounce(context) {
     if (this.y <= 0 + this.radius || this.y >= 150 - this.radius  ) {
         this.vy *= -1
@@ -31,7 +47,7 @@ bounce(context) {
 
 paddleCollision(p1, p2){
       if (this.vx > 0) {
-          const inRightEnd = this.x + this.radius >= p2.x;
+          const inRightEnd = this.x + this.radius >= p2.x; // the positon of the ball plus the radius of the ball greater then p
           if (inRightEnd) {
               if (this.y >= p2.y && this.y <= (p2.y + p2.height)){
                   this.vx *= -1;
@@ -47,13 +63,15 @@ paddleCollision(p1, p2){
           } 
       } 
  }
-  render(context, p1, p2) {
+ 
+  render(context, p1, p2, p1Score, p2Score) {
     context.fillStyle = this.color;
     this.draw(context);
     this.bounce(context);
     this.x += this.vx;
     this.y += this.vy;
     this.paddleCollision(p1, p2);
+    this.score(p1Score, p2Score);
     
   }
 }
