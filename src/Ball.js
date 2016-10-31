@@ -19,21 +19,27 @@ export default class Ball {
  }
 
  score(p1Score, p2Score){
+     var pingpong = new Audio('sounds/pong-03.wav')
  if (this.x <= 0 + this.radius){
      this.reset();
-     p1Score.score++;}
+     p1Score.score++;
+    pingpong.play}
      else if (this.x  >= 295){
          this.reset();
          p2Score.score++;
+         pingpong.play
      }
  }
 
 bounce(context) {
+    var ping = new Audio('sounds/pong-01.wav')
     if (this.y <= 0 + this.radius || this.y >= 150 - this.radius  ) {
         this.vy *= -1
+        ping.play()
     }
     if (this.x <= 0 + this.radius || this.x >= 300 - this.radius) {
         this.vx *= -1
+        ping.play()
     }
 }
 
@@ -46,11 +52,13 @@ bounce(context) {
     }
 
 paddleCollision(p1, p2){
+    var pong = new Audio('sounds/pong-02.wav')
       if (this.vx > 0) {
           const inRightEnd = this.x + this.radius >= p2.x; // the positon of the ball plus the radius of the ball greater then p
           if (inRightEnd) {
               if (this.y >= p2.y && this.y <= (p2.y + p2.height)){
                   this.vx *= -1;
+                pong.play()
               }
           }
       } else {
@@ -59,6 +67,7 @@ paddleCollision(p1, p2){
           if (inLeftEnd) {
               if (this.y >= p1.y && this.y <= (p1.y + p1.height)) {
                   this.vx *= -1;
+                  pong.play()
               }
           } 
       } 
