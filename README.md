@@ -28,11 +28,11 @@ This project uses
 ##### Player 1:
 * a: up
 * z: down
-<<<<<<< HEAD
+
 =======
 
 ##### Player 2:
 * ▲ : up
 * ▼: down
-<<<<<<< HEAD
+
 =======
