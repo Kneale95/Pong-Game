@@ -1,6 +1,6 @@
 # Pong game
 
-![Alt text](blob:http://imgur.com/641f49e5-d977-485e-a0c4-9cdfda184897 "Pong Image")
+![Alt text](http://i.imgur.com/M9wP32p.png "Pong Image")
 
 A basic pong game using HTML5 Canvas.
 
